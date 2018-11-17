@@ -35,9 +35,15 @@ const SettingsTabs = createMaterialTopTabNavigator({
 },{
     initialRouteName:'CPU',
     tabBarPosition:'bottom',
+    animationEnabled:true,
+    swipeEnabled:true,
     tabBarOptions:{
-        showIcon:true
-    }
+        showIcon:true,
+        style: {
+            backgroundColor: 'red',
+          },
+    },
+   
 });
 
 //Issue: the tab navigator needs to be wrapped inside a stack navigator
