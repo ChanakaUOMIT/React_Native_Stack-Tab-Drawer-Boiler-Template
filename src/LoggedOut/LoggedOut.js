@@ -4,11 +4,26 @@ import {View,
     Text,
     StyleSheet,
     TouchableOpacity,
+    TouchableHighlight,
     Image
 } from 'react-native';
 import RoundedButton from '../components/RoundedButton';
+import Icon from 'react-native-vector-icons/FontAwesome';
  
 class LoggedOut  extends Component{
+
+    onFacebookPress(){
+        alert('Facebook button Press')
+    }
+
+    onCreateAccountPress(){
+        alert('Create Account Press')
+    }
+
+    onMoreOptionsPress(){
+        alert('More Options Press')
+    }
+
      render(){
         return(
             <View style={styles.wrapper} > 
@@ -22,9 +37,53 @@ class LoggedOut  extends Component{
                 </Text>
                 <RoundedButton 
                     label="Continuos with Facebook"
-                    color="#008388"
-                    backgroundColor="#fffffff"
+                    textColor="#008388"
+                    background="#ffffff"
+                    icon={<Icon name="facebook" size={20}  style={styles.facebookButtonIcon}/>}
+                    handleOnPress={this.onFacebookPress}
                 />
+
+                <RoundedButton 
+                    label="Create an Acoount"
+                    textColor="#ffffff"
+                    // background="#ffffff"
+                    // icon={<Icon name="facebook" size={20}  style={styles.facebookButtonIcon}/>}
+                    handleOnPress={this.onCreateAccountPress}
+                />
+
+                <TouchableHighlight 
+                    style={styles.moreOptionsButton}
+                    onPress={this.onMoreOptionsPress}
+                >
+                    <Text style={styles.moreOptionsButtonText}>More options</Text>
+                </TouchableHighlight>
+
+                <View style={styles.termsAndCondition}>
+                    <Text style={styles.termsText}>By tapping Continue, Create Account or More options, </Text>
+                    <Text style={styles.termsText}> I  agreed to AladinLab's</Text>
+                    
+                    <TouchableHighlight style={styles.linkButton}>
+                        <Text style={styles.termsText}> Terms of Service</Text>
+                    </TouchableHighlight>
+
+                    <Text style={styles.termsText}> , </Text> 
+
+                    <TouchableHighlight style={styles.linkButton}>
+                        <Text style={styles.termsText}>Payments Terms of Service,</Text>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight style={styles.linkButton}>
+                        <Text style={styles.termsText}>Privacy Policy</Text>
+                    </TouchableHighlight>
+
+                      
+                    <Text style={styles.termsText}> and </Text>   
+                    <TouchableHighlight style={styles.linkButton}>
+                        <Text style={styles.termsText}>Nondiscrimination Policy.</Text>
+                    </TouchableHighlight>
+
+                </View>
+
             </View>
              </View>
          )
@@ -56,5 +115,34 @@ const styles=StyleSheet.create({
         color:'#ffffff',
         fontWeight:'300',
         marginBottom:40
+    },
+    facebookButtonIcon:{
+        color:'#008388',
+        position:'relative',
+        left:20,
+        zIndex: 8
+    },
+    moreOptionsButton:{
+        marginTop:15
+    },
+    moreOptionsButtonText:{
+        color:'#ffffff',
+        fontSize:16,
+    },
+    termsAndCondition:{
+        flexWrap:'wrap',
+        alignItems:'flex-start',
+        flexDirection:'row',
+        marginTop:30
+    },
+
+    termsText:{
+        color:'#ffffff',
+        fontSize:13,
+        fontWeight:'600'
+    },
+    linkButton:{
+        borderBottomWidth:1,
+        borderBottomColor:'#ffffff'
     }
 })

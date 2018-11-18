@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation';
 import Login from './src/Login/Login';
 import Drawer from './src/Drawer';
 import LoggedOut from './src/LoggedOut/LoggedOut';
+import Loginnew from './src/Login/Loginnew';
 
 
 export default class App extends Component {
@@ -18,16 +19,16 @@ export default class App extends Component {
 }
 
 const AppStackNavigator =  createStackNavigator({
-  // Login:{
-  //     screen: Login
-  // },
+  Login:{
+      screen: Loginnew
+  },
 
   // Drawer:{
   //     screen: Drawer
   // },
-  LoggedOut:{
-    screen: LoggedOut
-  }
+  // LoggedOut:{
+  //   screen: LoggedOut
+  // }
 },
 navigationOptions={
     headerMode:"none"
