@@ -8,20 +8,55 @@ import {View,
     TouchableOpacity,
     KeyboardAvoidingView
 } from 'react-native';
+import InputField from '../components/form/InputField';
+import NextArrorButton from '../components/button/NextArrorButton';
 
 // import Drawer from '../Drawer';
  
 class Loginnew extends Component{
+
+    handleNextButton(){
+        alert('Next Putton Pressed')
+    }
      render(){
         return(
             <KeyboardAvoidingView style={styles.wrapper}>
                 <View style={styles.scrollViewWrapper}>
                     <ScrollView style={styles.scrollView}>
                         <Text style={styles.loginHeader}>
-                            Log In
+                            Log In                            
                         </Text>
+
+                        <InputField 
+                            labelText="EMAIL ADDRESS"
+                            labelTextSize={14}
+                            labelColor='#ffffff'
+                            textColor='#ffffff'
+                            borderBottomColor="#ffffff"
+                            inputType="email"
+                            customStyle={{marginBottom:30}}
+                        />
+
+                        <InputField 
+                            labelText="PASSWORD"
+                            labelTextSize={14}
+                            labelColor='#ffffff'
+                            textColor='#ffffff'
+                            borderBottomColor="#ffffff"
+                            inputType="password"
+                            customStyle={{marginBottom:30}}
+
+                        />
+
                     </ScrollView>
                 </View>
+
+                <View style={styles.nextButton}>
+                    <NextArrorButton 
+                        handleNextButton={this.handleNextButton}
+                    />
+                </View>
+                    
             </KeyboardAvoidingView>
          )
      }
@@ -52,5 +87,11 @@ const styles = StyleSheet.create({
         color:'#ffffff',
         fontWeight:'600',
         marginBottom:40,
+    },
+    nextButton:{
+        // position:'absolute',
+        alignItems:'flex-end',
+        right:20,
+        bottom:10
     }
 });
