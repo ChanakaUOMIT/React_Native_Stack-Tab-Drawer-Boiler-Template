@@ -3,6 +3,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Login from './src/Login/Login';
 import Drawer from './src/Drawer';
+import LoggedOut from './src/LoggedOut/LoggedOut';
 
 
 export default class App extends Component {
@@ -17,12 +18,15 @@ export default class App extends Component {
 }
 
 const AppStackNavigator =  createStackNavigator({
-  Login:{
-      screen: Login
-  },
+  // Login:{
+  //     screen: Login
+  // },
 
-  Drawer:{
-      screen: Drawer
+  // Drawer:{
+  //     screen: Drawer
+  // },
+  LoggedOut:{
+    screen: LoggedOut
   }
 },
 navigationOptions={

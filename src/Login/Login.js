@@ -22,6 +22,10 @@ class Login extends Component{
                 <TouchableOpacity onPress={()=>this.props.navigation.navigate('Drawer')}>
                     <Text>Login</Text>
                 </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>this.props.navigation.navigate('LoggedOut')}>
+                    <Text>LoggedOut</Text>
+                </TouchableOpacity>
              </View>
          )
      }
