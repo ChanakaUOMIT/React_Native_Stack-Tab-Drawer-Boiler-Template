@@ -10,18 +10,37 @@ import {View,
 } from 'react-native';
 import InputField from '../components/form/InputField';
 import NextArrorButton from '../components/button/NextArrorButton';
+import Notification from '../components/notification/Notification';
+import colors from '../styles/colors';
 
 // import Drawer from '../Drawer';
  
 class Loginnew extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            // formValid:false,
+            formValid:true,
+
+        }
+        this.handleCloseNotification=this.handleCloseNotification.bind(this)
+    }
 
     handleNextButton(){
         alert('Next Putton Pressed')
     }
+
+    handleCloseNotification(){
+        // alert("Closing Notification")
+        this.setState({ formValid : true})
+    }
      render(){
+         const { formValid }=this.state;
+         const showNotification=formValid? false:true;
+         const background=formValid?colors.green01:colors.darkOrange;
         return(
             <KeyboardAvoidingView 
-                style={styles.wrapper}
+                style={[{backgroundColor:background} ,styles.wrapper]}
                 // behavior="padding"
             >
                 <View style={styles.scrollViewWrapper}>
@@ -59,6 +78,16 @@ class Loginnew extends Component{
                         handleNextButton={this.handleNextButton}
                     />
                 </View>
+
+                <View style={showNotification ? {marginTop:10}: {}}>
+                    <Notification 
+                        showNotification={showNotification}
+                        handleCloseNotification={this.handleCloseNotification}
+                        type="Error"
+                        firstLine="Those credentials don't look right"
+                        secondLine="Please try again."
+                    />
+                </View>
                     
             </KeyboardAvoidingView>
          )
@@ -72,7 +101,7 @@ const styles = StyleSheet.create({
     wrapper:{
         display:'flex',
         flex:1,
-        backgroundColor:'#008388',
+        // backgroundColor:'#008388',
 
     },
     scrollViewWrapper:{

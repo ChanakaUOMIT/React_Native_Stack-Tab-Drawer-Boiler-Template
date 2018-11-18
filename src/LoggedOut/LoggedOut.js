@@ -7,7 +7,7 @@ import {View,
     TouchableHighlight,
     Image
 } from 'react-native';
-import RoundedButton from '../components/RoundedButton';
+import RoundedButton from '../components/button/RoundedButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
  
 class LoggedOut  extends Component{
