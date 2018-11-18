@@ -10,11 +10,12 @@ import {View,
  
 class NextArrorButton extends Component{
      render(){
-         const { disabled }= this.props;
+         const { disabled,handleNextButton }= this.props;
          const opasityStyle= disabled?{backgroundColor : 'rgba(255,255,255,0.2'}:{ backgroundColor: 'rgba(255,255,255,0.6)'};
         return(
             <TouchableHighlight
                 style={[opasityStyle,styles.button]}
+                onPress={handleNextButton}
             >
                 <Icon 
                     name="angle-right"
@@ -29,6 +30,11 @@ class NextArrorButton extends Component{
 }
  
 export default NextArrorButton;
+
+NextArrorButton.protoTypes={
+    disabled:PropTypes.bool,
+    handleNextButton:PropTypes.func,
+}
 
 
 const styles = StyleSheet.create({
