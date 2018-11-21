@@ -12,6 +12,7 @@ import InputField from '../components/form/InputField';
 import NextArrorButton from '../components/button/NextArrorButton';
 import Notification from '../components/notification/Notification';
 import colors from '../styles/colors';
+import Loader from '../components/form/Loader';
 
 // import Drawer from '../Drawer';
  
@@ -147,6 +148,11 @@ class Loginnew extends Component{
                         secondLine="Please try again."
                     />
                 </View>
+
+                <Loader 
+                    modalVisible={true}
+                    animationType="fade"
+                />
                     
             </KeyboardAvoidingView>
          )
