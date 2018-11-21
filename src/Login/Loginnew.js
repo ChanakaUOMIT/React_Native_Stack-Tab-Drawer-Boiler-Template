@@ -21,23 +21,78 @@ class Loginnew extends Component{
         this.state={
             // formValid:false,
             formValid:true,
-
+            validEmail:false,
+            // validEmail:true,
+            emailAddress:'',
+            validPassword:false,
+            // validPassword:true,
         }
-        this.handleCloseNotification=this.handleCloseNotification.bind(this)
+        this.handleCloseNotification=this.handleCloseNotification.bind(this);
+        this.handleEmailChange=this.handleEmailChange.bind(this);
+        this.handleNextButton=this.handleNextButton.bind(this);
+        this.handlePasswordChange=this.handlePasswordChange.bind(this);
+        this.toggleNextButtonState= this.toggleNextButtonState.bind(this);
     }
 
     handleNextButton(){
-        alert('Next Putton Pressed')
+        // alert(this.state.emailAddress)
+        // alert(this.validEmail);
+        // alert('Next Putton Pressed')
+        if(this.state.emailAddress === 'test@test.com' && this.state.validPassword){
+            alert('Success');
+            this.setState({ formValid: true });
+        }else {
+            this.setState({ formValid: false });
+        }
     }
 
     handleCloseNotification(){
         // alert("Closing Notification")
         this.setState({ formValid : true})
     }
+
+    handleEmailChange(email){
+        // const emailCheckRegex=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*) | (".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailCheckRegex=/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+        this.setState({ emailAddress:email});
+
+        if(!this.state.validEmail){
+            if(emailCheckRegex.test(email)){
+                this.setState({ validEmail : true })
+            }else{
+                if(!emailCheckRegex.test(email)){
+                    this.setState({ validEmail : false })
+                }
+            }
+        }
+    }
+
+    handlePasswordChange(password){
+        if(!this.state.validPassword){
+            if(password.length > 4 ){
+                //Password has to be at least 4 character long
+                this.setState({ validPassword: true})
+            }else if(password <= 4){
+                this.setState({ validPassword: false});
+            }
+        }
+    }
+
+    toggleNextButtonState(){
+        const { validEmail, validPassword }=this.state;
+        if(validEmail && validPassword ){
+            return false;
+        }
+        return true;
+    }
+
      render(){
          const { formValid }=this.state;
          const showNotification=formValid? false:true;
          const background=formValid?colors.green01:colors.darkOrange;
+         const notificationMarginTop= showNotification ? 10:0;
+
         return(
             <KeyboardAvoidingView 
                 style={[{backgroundColor:background} ,styles.wrapper]}
@@ -57,6 +112,7 @@ class Loginnew extends Component{
                             borderBottomColor="#ffffff"
                             inputType="email"
                             customStyle={{marginBottom:30}}
+                            onChangeText={this.handleEmailChange}
                         />
 
                         <InputField 
@@ -67,6 +123,7 @@ class Loginnew extends Component{
                             borderBottomColor="#ffffff"
                             inputType="password"
                             customStyle={{marginBottom:30}}
+                            onChangeText={this.handlePasswordChange}
 
                         />
 
@@ -76,10 +133,11 @@ class Loginnew extends Component{
                 <View style={styles.nextButton}>
                     <NextArrorButton 
                         handleNextButton={this.handleNextButton}
+                        disabled={this.toggleNextButtonState()}
                     />
                 </View>
 
-                <View style={showNotification ? {marginTop:10}: {}}>
+                <View style={[styles.notificationWrapper, {marginTop:notificationMarginTop}]}>
                     <Notification 
                         showNotification={showNotification}
                         handleCloseNotification={this.handleCloseNotification}
@@ -125,5 +183,11 @@ const styles = StyleSheet.create({
         alignItems:'flex-end',
         right:20,
         bottom:10
+    },
+    notificationWrapper:{
+        position:'absolute',
+        bottom:0,
+        // zIndex:9
+        zIndex:999
     }
 });

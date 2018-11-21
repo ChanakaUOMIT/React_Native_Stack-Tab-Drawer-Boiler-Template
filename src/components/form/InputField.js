@@ -24,7 +24,7 @@ class InputField  extends Component{
     }
 
      render(){
-         const { labelText, labelTextSize, labelColor, textColor,borderBottomColor,inputType, customStyle }=this.props;
+         const { labelText, labelTextSize, labelColor, textColor,borderBottomColor,inputType, customStyle, onChangeText }=this.props;
          const { secureInput }=this.state;
          const fontSize=labelTextSize || 14;
          const color=labelColor || '#ffffff';
@@ -49,6 +49,7 @@ class InputField  extends Component{
                     style={[{color: inputColor, borderBottomColor: borderBottom},styles.inputField]}
                     // secureTextEntry={inputType === 'password' ? true: false}
                     secureTextEntry={secureInput}
+                    onChangeText={onChangeText}
 
                 />
              </View>
@@ -66,7 +67,7 @@ InputField.propTypes={
     borderBottomColor: PropTypes.string,
     inputType: PropTypes.string.isRequired,
     customStyle:PropTypes.object,
-
+    onChangeText:PropTypes.func,
 }
 
 
