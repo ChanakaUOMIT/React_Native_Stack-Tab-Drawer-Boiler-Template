@@ -137,7 +137,8 @@ class Loginnew extends Component{
                     />
                 </View>
 
-                <View style={[styles.notificationWrapper, {marginTop:notificationMarginTop}]}>
+                {/* Button clickable interface */}
+                <View style={[styles.notificationWrapper, {marginTop:notificationMarginTop}]}> 
                     <Notification 
                         showNotification={showNotification}
                         handleCloseNotification={this.handleCloseNotification}
