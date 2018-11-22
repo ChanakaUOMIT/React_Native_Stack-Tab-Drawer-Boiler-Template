@@ -5,6 +5,7 @@ import Login from './src/Login/Login';
 import Drawer from './src/Drawer';
 import LoggedOut from './src/LoggedOut/LoggedOut';
 import Loginnew from './src/Login/Loginnew';
+import ForgotPassword from './src/ForgotPassword/ForgotPassword';
 
 
 export default class App extends Component {
@@ -19,9 +20,13 @@ export default class App extends Component {
 }
 
 const AppStackNavigator =  createStackNavigator({
-  Login:{
-      screen: Loginnew
-  },
+  // Login:{
+  //     screen: Loginnew
+  // },
+
+  ForgotPassword:{
+    screen: ForgotPassword
+  }
 
   // Drawer:{
   //     screen: Drawer
