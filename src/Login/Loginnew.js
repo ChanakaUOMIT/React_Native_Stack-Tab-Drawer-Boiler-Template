@@ -144,7 +144,7 @@ class Loginnew extends Component{
                     </ScrollView>
                 </View>
 
-                <View style={styles.nextButton}>
+                <View>
                     <NextArrorButton 
                         handleNextButton={this.handleNextButton}
                         disabled={this.toggleNextButtonState()}
@@ -198,12 +198,12 @@ const styles = StyleSheet.create({
         fontWeight:'600',
         marginBottom:40,
     },
-    nextButton:{
-        // position:'absolute',
-        alignItems:'flex-end',
-        right:20,
-        bottom:10
-    },
+    // nextButton:{
+    //     // position:'absolute',
+    //     alignItems:'flex-end',
+    //     right:20,
+    //     bottom:10
+    // },
     notificationWrapper:{
         position:'absolute',
         bottom:0,

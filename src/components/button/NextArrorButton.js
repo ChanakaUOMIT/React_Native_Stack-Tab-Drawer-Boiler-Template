@@ -14,11 +14,12 @@ class NextArrorButton extends Component{
          const { disabled,handleNextButton }= this.props;
          const opacityStyle= disabled? 0.2: 0.8;
         return(
-            <TouchableHighlight
-                style={[{opacity:opacityStyle},styles.button]}
-                onPress={handleNextButton}
-                disabled={disabled}
-            >
+            <View style={styles.buttonWrapper}>
+                <TouchableHighlight
+                    style={[{opacity:opacityStyle},styles.button]}
+                    onPress={handleNextButton}
+                    disabled={disabled}
+                 >
                 <Icon 
                     name="angle-right"
                     color='#008388'
@@ -26,7 +27,8 @@ class NextArrorButton extends Component{
                     style={styles.icon}
                 />
                 {/* <Text>gfgf</Text> */}
-            </TouchableHighlight>
+                </TouchableHighlight>
+            </View>
          )
      }
 }
@@ -40,6 +42,11 @@ NextArrorButton.protoTypes={
 
 
 const styles = StyleSheet.create({
+    buttonWrapper:{
+        alignItems:'flex-end',
+        right:20,
+        bottom:20
+    },
     button:{
         alignItems:'center',
         justifyContent:'center',

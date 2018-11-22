@@ -6,6 +6,7 @@ import {View,
     StyleSheet,
     TouchableOpacity,
     KeyboardAvoidingView,
+    ScrollView
 } from 'react-native';
 import colors from '../styles/colors';
 import InputField from '../components/form/InputField';
@@ -74,42 +75,45 @@ class ForgotPassword extends Component{
                 style={[{backgroundColor:background},styles.wrapper]}
                 // behavior="padding"
             > 
-                <View style={styles.form}>
-                    <Text style={styles.forgotPasswordHeading}>
-                        Forgot your password ?
-                    </Text>
-                    <Text style={styles.forgotPasswordSubheading}>
-                        Enter your email to find your account
-                    </Text>
+                <View style={styles.scrollViewWrapper}>
+                    <ScrollView style={styles.scrollView}>
+                        <Text style={styles.forgotPasswordHeading}>
+                            Forgot your password ?
+                        </Text>
+                        <Text style={styles.forgotPasswordSubheading}>
+                            Enter your email to find your account
+                        </Text>
 
-                    <InputField 
-                        labelText="EMAIL ADDRESS"
-                        customStyle={{marginBottom:30}}
-                        textColor={colors.white}
-                        labelTextSize={14}
-                        labelColor={colors.white}
-                        borderBottomColor={colors.white}
-                        inputType="email"
-                        onChangeText={this.handleEmailChange}
-                        showCheckmark={validEmail}
-                    />
-                </View>
+                        <InputField 
+                            labelText="EMAIL ADDRESS"
+                            customStyle={{marginBottom:30}}
+                            textColor={colors.white}
+                            labelTextSize={14}
+                            labelColor={colors.white}
+                            borderBottomColor={colors.white}
+                            inputType="email"
+                            onChangeText={this.handleEmailChange}
+                            showCheckmark={validEmail}
+                        />
+                    </ScrollView>
+                
 
-                <View style={styles.nextButtonWrapper}>
-                    <NextArrorButton 
-                        handleNextButton={this.goToNextStep}
-                        disabled={!validEmail}
-                    />
-                </View>
+                    <View>
+                        <NextArrorButton 
+                            handleNextButton={this.goToNextStep}
+                            disabled={!validEmail}
+                        />
+                    </View>
 
-                <View>
-                    <Notification 
-                        showNotification={showNotification}
-                        handleCloseNotification={this.handleCloseNotification}
-                        type="Error"
-                        firstLine="No account exists for the requested"
-                        secondLine="email address"
-                    />
+                    <View style={styles.notificationWrapper}>
+                        <Notification 
+                            showNotification={showNotification}
+                            handleCloseNotification={this.handleCloseNotification}
+                            type="Error"
+                            firstLine="No account exists for the requested"
+                            secondLine="email address"
+                        />
+                    </View>
                 </View>
 
                 <Loader 
@@ -130,6 +134,16 @@ const styles = StyleSheet.create({
         flex:1,
         // backgroundColor: colors.green01,
     },
+    scrollViewWrapper:{
+        marginTop:70,
+        flex:1,
+    },
+    scrollView:{
+        paddingLeft:30,
+        paddingRight:30,
+        paddingTop:20,
+        flex:1
+    },
     form:{
         marginTop:90,
         paddingLeft:20,
@@ -148,9 +162,10 @@ const styles = StyleSheet.create({
         marginTop:10,
         marginBottom:60
     },
-    nextButtonWrapper:{
-        alignItems:'flex-end',
-        right:20,
-        bottom:20
-    }
+    notificationWrapper:{
+        position:'absolute',
+        bottom:0,
+        // zIndex:9
+        zIndex:999
+    },
 });
