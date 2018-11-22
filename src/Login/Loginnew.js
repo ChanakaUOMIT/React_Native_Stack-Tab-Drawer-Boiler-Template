@@ -27,6 +27,7 @@ class Loginnew extends Component{
             emailAddress:'',
             validPassword:false,
             // validPassword:true,
+            loadingVisible:false
         }
         this.handleCloseNotification=this.handleCloseNotification.bind(this);
         this.handleEmailChange=this.handleEmailChange.bind(this);
@@ -39,12 +40,21 @@ class Loginnew extends Component{
         // alert(this.state.emailAddress)
         // alert(this.validEmail);
         // alert('Next Putton Pressed')
-        if(this.state.emailAddress === 'test@test.com' && this.state.validPassword){
-            alert('Success');
-            this.setState({ formValid: true });
-        }else {
-            this.setState({ formValid: false });
-        }
+
+        //let's simulate a slow server to show the notification
+        this.setState({ loadingVisible: true });
+        
+        setTimeout(()=>{
+            if(this.state.emailAddress === 'test@test.com' && this.state.validPassword){
+                this.setState({ formValid: true, loadingVisible: false }, () =>{
+                    alert('Success');
+                });
+                // alert('Success'); //Something weird happens with this alert if it before the setState
+            }else {
+                this.setState({ formValid: false, loadingVisible: false });
+            }
+        },2000);
+        
     }
 
     handleCloseNotification(){
@@ -89,7 +99,7 @@ class Loginnew extends Component{
     }
 
      render(){
-         const { formValid }=this.state;
+         const { formValid, loadingVisible }=this.state;
          const showNotification=formValid? false:true;
          const background=formValid?colors.green01:colors.darkOrange;
          const notificationMarginTop= showNotification ? 10:0;
@@ -150,7 +160,7 @@ class Loginnew extends Component{
                 </View>
 
                 <Loader 
-                    modalVisible={true}
+                    modalVisible={loadingVisible}
                     animationType="fade"
                 />
                     
