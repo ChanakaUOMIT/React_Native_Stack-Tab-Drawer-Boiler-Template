@@ -72,7 +72,7 @@ class ForgotPassword extends Component{
         return(
             <KeyboardAvoidingView 
                 style={[{backgroundColor:background},styles.wrapper]}
-                behavior="padding"
+                // behavior="padding"
             > 
                 <View style={styles.form}>
                     <Text style={styles.forgotPasswordHeading}>
