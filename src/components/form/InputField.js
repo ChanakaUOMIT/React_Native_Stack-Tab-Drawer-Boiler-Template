@@ -31,6 +31,9 @@ class InputField  extends Component{
          const inputColor=textColor || '#ffffff';
          const borderBottom=borderBottomColor || 'transparent';
 
+         //let's change the keyboard if the input field is an email
+         const keyboardType= inputType === 'email' ? 'email-address':'default';
+
         return(
             <View style={[customStyle, styles.wrapper]}> 
                 <Text style={[{fontSize, color},styles.label]}>{labelText}</Text>
@@ -50,7 +53,7 @@ class InputField  extends Component{
                     // secureTextEntry={inputType === 'password' ? true: false}
                     secureTextEntry={secureInput}
                     onChangeText={onChangeText}
-
+                    keyboardType ={keyboardType}
                 />
              </View>
          )
