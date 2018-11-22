@@ -8,6 +8,12 @@ import {View,
     TouchableOpacity,
     KeyboardAvoidingView
 } from 'react-native';
+
+//Redux case
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../redux/actions';
+
 import InputField from '../components/form/InputField';
 import NextArrorButton from '../components/button/NextArrorButton';
 import Notification from '../components/notification/Notification';
@@ -25,6 +31,7 @@ class Loginnew extends Component{
             validEmail:false,
             // validEmail:true,
             emailAddress:'',
+            password:'',
             validPassword:false,
             // validPassword:true,
             loadingVisible:false
@@ -45,15 +52,24 @@ class Loginnew extends Component{
         this.setState({ loadingVisible: true });
         
         setTimeout(()=>{
-            if(this.state.emailAddress === 'test@test.com' && this.state.validPassword){
-                this.setState({ formValid: true, loadingVisible: false }, () =>{
-                    alert('Success');
-                });
-                // alert('Success'); //Something weird happens with this alert if it before the setState
-            }else {
+            const { emailAddress,password }=this.state;
+
+            if(this.props.logIn(emailAddress, password)){
+                this.setState({ formValid: true, loadingVisible: false });
+            }else{
                 this.setState({ formValid: false, loadingVisible: false });
             }
         },2000);
+
+        //     if(this.state.emailAddress === 'test@test.com' && this.state.validPassword){
+        //         this.setState({ formValid: true, loadingVisible: false }, () =>{
+        //             alert('Success');
+        //         });
+        //         // alert('Success'); //Something weird happens with this alert if it before the setState
+        //     }else {
+        //         this.setState({ formValid: false, loadingVisible: false });
+        //     }
+        // },2000);
         
     }
 
@@ -80,6 +96,8 @@ class Loginnew extends Component{
     }
 
     handlePasswordChange(password){
+        this.setState({ password });
+        
         if(!this.state.validPassword){
             if(password.length > 4 ){
                 //Password has to be at least 4 character long
@@ -103,6 +121,7 @@ class Loginnew extends Component{
          const showNotification=formValid? false:true;
          const background=formValid?colors.green01:colors.darkOrange;
          const notificationMarginTop= showNotification ? 10:0;
+         console.log(this.props.loggedInStatus);
 
         return(
             <KeyboardAvoidingView 
@@ -171,8 +190,18 @@ class Loginnew extends Component{
          )
      }
 }
+
+const mapStateToProps=(state) =>{
+    return{
+        loggedInStatus:state.loggedInStatus,
+    }
+};
+
+const mapDispatchToProps=(dispatch)=>{
+    return bindActionCreators(ActionCreators, dispatch);
+};
  
-export default Loginnew;
+export default connect(mapStateToProps, mapDispatchToProps)(Loginnew);
 
 
 const styles = StyleSheet.create({

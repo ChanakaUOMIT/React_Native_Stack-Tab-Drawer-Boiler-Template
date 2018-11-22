@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Login from './src/Login/Login';
@@ -12,7 +14,12 @@ export default class App extends Component {
 
   render() {
     return (
-      <AppStackNavigator />
+      // <AppStackNavigator />
+
+      <Provider store={store}>
+        <AppStackNavigator />
+      </Provider>
+
     // <Text>RN ghg</Text>
     // <Login />
     );
