@@ -13,6 +13,7 @@ import InputField from '../components/form/InputField';
 import NextArrorButton from '../components/button/NextArrorButton';
 import Loader from '../components/form/Loader';
 import Notification from '../components/notification/Notification';
+import NavBarButton from '../components/button/NavBarButton';
  
 class ForgotPassword extends Component{
     constructor(props){
@@ -75,6 +76,15 @@ class ForgotPassword extends Component{
                 style={[{backgroundColor:background},styles.wrapper]}
                 // behavior="padding"
             > 
+                <View style={styles.NavBarButtonWrapper}>
+                    <NavBarButton style={styles.NavBarButton}
+                        // handleButtonPress={this.handleButtonPress}
+                        handleButtonPress={() => this.props.navigation.navigate('Login')}
+                        location="right"
+                        color={colors.white}
+                        text="Log In"
+                    />
+                </View>
                 <View style={styles.scrollViewWrapper}>
                     <ScrollView style={styles.scrollView}>
                         <Text style={styles.forgotPasswordHeading}>

@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
+// import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
+// import { reduxifyNavigator } from 'react-navigation-redux-helpers';
+// import AppWithNavigationState from './src/navigators/AppNavigator'
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 import Login from './src/Login/Login';
@@ -13,10 +16,15 @@ import ForgotPassword from './src/ForgotPassword/ForgotPassword';
 export default class App extends Component {
 
   render() {
-    return (
+    return (      
+      // <Provider store={store}>
+      //   {/* <AppWithNavigationState listener={createReduxBoundAddListener('root')}  /> */}
+      //   {/* <AppWithNavigationState listener={reduxifyNavigator('root')} /> */}
+      // </Provider>
+
       // <AppStackNavigator />
 
-      <Provider store={store}>
+      <Provider store={store} >
         <AppStackNavigator />
       </Provider>
 
@@ -27,20 +35,22 @@ export default class App extends Component {
 }
 
 const AppStackNavigator =  createStackNavigator({
+  LoggedOut:{
+    screen: LoggedOut
+  },
+  
   Login:{
       screen: Loginnew
   },
 
   ForgotPassword:{
     screen: ForgotPassword
-  }
+  },
 
-  // Drawer:{
-  //     screen: Drawer
-  // },
-  // LoggedOut:{
-  //   screen: LoggedOut
-  // }
+  Drawer:{
+      screen: Drawer
+  },
+  
 },
 navigationOptions={
     headerMode:"none"

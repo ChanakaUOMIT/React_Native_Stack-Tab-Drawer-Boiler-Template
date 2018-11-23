@@ -9,10 +9,29 @@ import {View,
 } from 'react-native';
 import RoundedButton from '../components/button/RoundedButton';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { transparentHeaderStyle } from '../styles/navigation';
+import colors from '../styles/colors';
+import NavBarButton from '../components/button/NavBarButton';
  
 class LoggedOut  extends Component{
 
-    onFacebookPress(){
+    constructor(props){
+        super(props);
+    }
+    // static navigationOptions=({ navigation }) =>({
+    //     headerRight:<NavBarButton />,
+    //     headerStyle: transparentHeaderStyle,
+    //     headerTintColor:colors.white,
+    // });
+
+    // static navigationOptions = ({ navigation }) => ({
+    //     headerRight: <NavBarButton handleButtonPress={() => navigation.navigate('LogIn')} location="right" color={colors.white} text="Log In" />,
+    //     headerStyle: transparentHeaderStyle,
+    //     headerTransparent: true,
+    //     headerTintColor: colors.white,
+    //   });
+
+    onFacebookPress(){ 
         alert('Facebook button Press')
     }
 
@@ -23,10 +42,24 @@ class LoggedOut  extends Component{
     onMoreOptionsPress(){
         alert('More Options Press')
     }
+    handleButtonPress(){
+        // NavigationPreloadManager.navigate('Loginnew')
+        navigation.navigate("Loginnew");
+    }
 
      render(){
         return(
             <View style={styles.wrapper} > 
+
+                <View style={styles.NavBarButtonWrapper}>
+                    <NavBarButton style={styles.NavBarButton}
+                        // handleButtonPress={this.handleButtonPress}
+                        handleButtonPress={() => this.props.navigation.navigate('Login')}
+                        location="right"
+                        color={colors.white}
+                        text="Log In"
+                    />
+                </View>
             <View style={styles.logoContainer}>
                 <Image
                     source={require('../Images/logo1.png')}
@@ -144,5 +177,11 @@ const styles=StyleSheet.create({
     linkButton:{
         borderBottomWidth:1,
         borderBottomColor:'#ffffff'
-    }
+    },
+    NavBarButtonWrapper:{
+        color: colors.white
+    },
+    NavBarButton:{
+        color: colors.white
+    },
 })

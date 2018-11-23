@@ -19,6 +19,7 @@ import NextArrorButton from '../components/button/NextArrorButton';
 import Notification from '../components/notification/Notification';
 import colors from '../styles/colors';
 import Loader from '../components/form/Loader';
+import NavBarButton from '../components/button/NavBarButton';
 
 // import Drawer from '../Drawer';
  
@@ -56,6 +57,9 @@ class Loginnew extends Component{
 
             if(this.props.logIn(emailAddress, password)){
                 this.setState({ formValid: true, loadingVisible: false });
+                // alert('Next Putton Pressed');
+                this.props.navigation.navigate("Drawer");
+
             }else{
                 this.setState({ formValid: false, loadingVisible: false });
             }
@@ -128,6 +132,16 @@ class Loginnew extends Component{
                 style={[{backgroundColor:background} ,styles.wrapper]}
                 // behavior="padding"
             >
+                <View style={styles.NavBarButtonWrapper}>
+                    <NavBarButton style={styles.NavBarButton}
+                        // handleButtonPress={this.handleButtonPress}
+                        handleButtonPress={() => this.props.navigation.navigate('ForgotPassword')}
+                        location="right"
+                        color={colors.white}
+                        text="Forgot Password"
+                    />
+                </View>
+
                 <View style={styles.scrollViewWrapper}>
                     <ScrollView style={styles.scrollView}>
                         <Text style={styles.loginHeader}>
@@ -163,8 +177,15 @@ class Loginnew extends Component{
                     </ScrollView>
                 </View>
 
+                <TouchableOpacity
+                     onPress={() => this.props.navigation.navigate("Drawer")}
+                >
+                    <Text>Hfsdf</Text>
+                </TouchableOpacity>
+
                 <View>
                     <NextArrorButton 
+
                         handleNextButton={this.handleNextButton}
                         disabled={this.toggleNextButtonState()}
                     />
